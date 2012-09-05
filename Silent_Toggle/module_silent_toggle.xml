@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_silent_toggle" default="compile.module.silent_toggle">
+    <dirname property="module.silent_toggle.basedir" file="${ant.file.module_silent_toggle}"/>
+
+    <property name="module.jdk.home.silent_toggle" value="${jdk.home.android_2.2_platform}"/>
+    <property name="module.jdk.bin.silent_toggle" value="${jdk.bin.android_2.2_platform}"/>
+    <property name="module.jdk.classpath.silent_toggle" value="jdk.classpath.android_2.2_platform"/>
+
+    <property name="compiler.args.silent_toggle" value="${compiler.args}"/>
+
+    <property name="silent_toggle.output.dir" value="${module.silent_toggle.basedir}/out/production/Silent_Toggle"/>
+    <property name="silent_toggle.testoutput.dir" value="${module.silent_toggle.basedir}/out/test/Silent_Toggle"/>
+
+    <path id="silent_toggle.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="silent_toggle.module.production.classpath">
+        <path refid="${module.jdk.classpath.silent_toggle}"/>
+    </path>
+
+    <path id="silent_toggle.runtime.production.module.classpath">
+        <pathelement location="${silent_toggle.output.dir}"/>
+    </path>
+
+    <path id="silent_toggle.module.classpath">
+        <path refid="${module.jdk.classpath.silent_toggle}"/>
+        <pathelement location="${silent_toggle.output.dir}"/>
+    </path>
+
+    <path id="silent_toggle.runtime.module.classpath">
+        <pathelement location="${silent_toggle.testoutput.dir}"/>
+        <pathelement location="${silent_toggle.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.silent_toggle">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.silent_toggle">
+        <patternset refid="excluded.from.module.silent_toggle"/>
+    </patternset>
+
+    <path id="silent_toggle.module.sourcepath">
+        <dirset dir="${module.silent_toggle.basedir}">
+            <include name="src"/>
+            <include name="gen"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.silent_toggle"
+            depends="compile.module.silent_toggle.production,compile.module.silent_toggle.tests"
+            description="Compile module Silent_Toggle"/>
+
+    <target name="compile.module.silent_toggle.production" depends="register.custom.compilers"
+            description="Compile module Silent_Toggle; production classes">
+        <mkdir dir="${silent_toggle.output.dir}"/>
+        <javac2 destdir="${silent_toggle.output.dir}" debug="${compiler.debug}"
+                nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true"
+                executable="${module.jdk.bin.silent_toggle}/javac">
+            <compilerarg line="${compiler.args.silent_toggle}"/>
+            <bootclasspath refid="silent_toggle.module.bootclasspath"/>
+            <classpath refid="silent_toggle.module.production.classpath"/>
+            <src refid="silent_toggle.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.silent_toggle"/>
+        </javac2>
+
+        <copy todir="${silent_toggle.output.dir}">
+            <fileset dir="${module.silent_toggle.basedir}/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+            <fileset dir="${module.silent_toggle.basedir}/gen">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.silent_toggle.tests"
+            depends="register.custom.compilers,compile.module.silent_toggle.production"
+            description="compile module Silent_Toggle; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.silent_toggle" description="cleanup module">
+        <delete dir="${silent_toggle.output.dir}"/>
+        <delete dir="${silent_toggle.testoutput.dir}"/>
+    </target>
+</project>

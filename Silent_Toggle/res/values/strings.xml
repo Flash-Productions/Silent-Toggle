@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Silent Toggle</string>
+    <string name="Silent_Ringer_Mode">Toggle Ringer Mode</string>
+    <string name="Silent">Silent Mode Activated</string>
+    <string name="Normal">Normal Mode Activated</string>
+    <string name="Vibrate">Vibrate Mode Activated</string>
+
+</resources>
