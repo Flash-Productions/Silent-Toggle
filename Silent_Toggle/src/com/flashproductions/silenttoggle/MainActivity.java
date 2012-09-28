@@ -80,7 +80,7 @@ public class MainActivity extends Activity implements AdListener
                     case PHONE_STATE_SILENT:
                         mAudioManager.setRingerMode ( AudioManager.RINGER_MODE_NORMAL );
                         mAudioManager.setStreamVolume ( AudioManager.STREAM_RING,
-                                                        mAudioManager.getStreamMaxVolume ( AudioManager.STREAM_RING ),
+                                                        mAudioManager.getStreamVolume(AudioManager.STREAM_RING),
                                                         AudioManager.FLAG_SHOW_UI );
                         mPhoneState = PHONE_STATE_NORMAL;
                         break;

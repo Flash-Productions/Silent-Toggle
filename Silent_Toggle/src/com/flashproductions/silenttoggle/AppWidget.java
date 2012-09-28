@@ -102,7 +102,7 @@ public class AppWidget extends AppWidgetProvider
 
                 audioManager.setRingerMode ( AudioManager.RINGER_MODE_NORMAL );
                 audioManager.setStreamVolume ( AudioManager.STREAM_RING,
-                                               audioManager.getStreamMaxVolume ( AudioManager.STREAM_RING ),
+                                               audioManager.getStreamVolume(AudioManager.STREAM_RING),
                                                AudioManager.FLAG_SHOW_UI );
 
 
@@ -162,7 +162,7 @@ public class AppWidget extends AppWidgetProvider
 
                 Toast toast = new Toast ( AppWidget.ToggleService.this );
                 toast.setGravity ( Gravity.CENTER_VERTICAL, 0, 0 );
-                toast.setDuration ( Toast.LENGTH_LONG );
+                toast.setDuration ( Toast.LENGTH_SHORT );
                 toast.setView ( layout );
                 toast.show ();
 
